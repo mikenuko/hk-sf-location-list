@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-06-14T09:18:02.062Z",
+  "source_version": "20251211",
+  "hash": "9e2e065c6231",
+  "count": 1684,
+  "tc_coverage": 0.9994061757719715,
+  "capability_counts": {
+    "station": 117,
+    "locker": 1681,
+    "partner": 0,
+    "cold_chain": 116
+  },
+  "districts": {
+    "Central and Western District": 49,
+    "Cheung Chau District": 3,
+    "Eastern District": 106,
+    "Kowloon City District": 103,
+    "Kwai Tsing District": 98,
+    "Kwun Tong District": 135,
+    "Lamma Island District": 6,
+    "Lantau District": 33,
+    "North District": 61,
+    "Sai Kung District": 85,
+    "Sha Tin District": 179,
+    "Sham Shui Po District": 89,
+    "Southern District": 44,
+    "Tai Po District": 90,
+    "Tsuen Wan District": 82,
+    "Tuen Mun District": 139,
+    "Wan Chai District": 32,
+    "Wong Tai Sin District": 93,
+    "Yau Tsim Mong District": 101,
+    "Yuen Long District": 156
+  },
+  "changes": {
+    "added": 1684,
+    "removed": 0,
+    "changed": 0
+  },
+  "files": {
+    "all": "locations.json",
+    "geojson": "locations.geojson",
+    "by_district": [
+      "by-district/central-and-western-district.json",
+      "by-district/cheung-chau-district.json",
+      "by-district/eastern-district.json",
+      "by-district/kowloon-city-district.json",
+      "by-district/kwai-tsing-district.json",
+      "by-district/kwun-tong-district.json",
+      "by-district/lamma-island-district.json",
+      "by-district/lantau-district.json",
+      "by-district/north-district.json",
+      "by-district/sai-kung-district.json",
+      "by-district/sha-tin-district.json",
+      "by-district/sham-shui-po-district.json",
+      "by-district/southern-district.json",
+      "by-district/tai-po-district.json",
+      "by-district/tsuen-wan-district.json",
+      "by-district/tuen-mun-district.json",
+      "by-district/wan-chai-district.json",
+      "by-district/wong-tai-sin-district.json",
+      "by-district/yau-tsim-mong-district.json",
+      "by-district/yuen-long-district.json"
+    ],
+    "changelog": "changelog.json"
+  }
+}

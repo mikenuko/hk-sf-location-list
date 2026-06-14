@@ -1,0 +1,13 @@
+{
+  "name": "sfhk-pickup-api",
+  "version": "1.0.0",
+  "description": "Latest SF Express Hong Kong pickup/service-point locations as static JSON + GeoJSON, refreshed daily.",
+  "scripts": {
+    "refresh": "node src/build.mjs"
+  },
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}
