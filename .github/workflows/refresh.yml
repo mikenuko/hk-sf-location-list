@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write # commit refreshed data back to the repo
+  pages: write # deploy to GitHub Pages
+  id-token: write # required by deploy-pages
 
 concurrency:
   group: refresh
@@ -15,6 +17,9 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -44,3 +49,18 @@ jobs:
             git commit -m "data: refresh $(date -u +%F) [skip ci]"
             git push
           fi
+
+      # Publish the data files + landing page to GitHub Pages.
+      - name: Assemble Pages site
+        run: |
+          mkdir -p _site
+          cp -r data/. _site/
+          cp site/index.html _site/index.html
+          rm -f _site/.snapshot.json   # internal diffing artifact, not for publishing
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4

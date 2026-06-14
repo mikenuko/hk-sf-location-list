@@ -45,6 +45,18 @@ npm run refresh                    # writes data/
 
 `HEADED=1` to watch the browser; `PW_CHANNEL=chromium` to use Playwright's bundled Chromium instead of system Chrome.
 
-## Schedule
+## Schedule & serving
 
-`.github/workflows/refresh.yml` runs daily (~04:17 HKT), installs Chromium in the runner, rebuilds `data/`, and commits only when something changed. The runner having no browser pre-installed is irrelevant — Playwright installs one per run.
+`.github/workflows/refresh.yml` runs daily (~04:17 HKT), installs Chromium in the runner, rebuilds `data/`, commits only when something changed, then **publishes to GitHub Pages**. The runner having no browser pre-installed is irrelevant — Playwright installs one per run.
+
+The published site has the data files at the root plus a Leaflet map demo:
+
+```
+https://<user>.github.io/<repo>/                  # map demo (site/index.html)
+https://<user>.github.io/<repo>/locations.geojson # map-ready
+https://<user>.github.io/<repo>/locations.json
+https://<user>.github.io/<repo>/by-district/<district>.json
+https://<user>.github.io/<repo>/meta.json
+```
+
+**One-time setup:** repo **Settings → Pages → Source → GitHub Actions**. After that every refresh redeploys automatically.
