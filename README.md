@@ -7,8 +7,9 @@ Latest **SF Express Hong Kong** service points as static **JSON + GeoJSON**, ref
 | File | What |
 |------|------|
 | `data/locations.json` | All outlets (flat array) |
-| `data/locations.geojson` | Same, as a GeoJSON `FeatureCollection` (map-ready) |
+| `data/locations.csv` | Same as a spreadsheet (UTF-8 BOM; opens in Excel) |
 | `data/by-district/<district>.json` | One file per HK district |
+| `data/locations.geojson` | GeoJSON `FeatureCollection` (if you ever want it on a map) |
 | `data/meta.json` | Version, counts, capability breakdown, district index, hash |
 | `data/changelog.json` | `added` / `removed` / `changed` ids vs. the previous run |
 
@@ -16,7 +17,8 @@ Latest **SF Express Hong Kong** service points as static **JSON + GeoJSON**, ref
 
 ```jsonc
 {
-  "id": "852AA",
+  "code": "852DDL",   // SF location code
+  "id": "852DDL",     // unique key (= code, suffixed only on rare collisions)
   "name_en": "...", "name_tc": "...",
   "address_en": "...", "address_tc": "...",
   "telephone": "...",
@@ -49,11 +51,11 @@ npm run refresh                    # writes data/
 
 `.github/workflows/refresh.yml` runs daily (~04:17 HKT), installs Chromium in the runner, rebuilds `data/`, commits only when something changed, then **publishes to GitHub Pages**. The runner having no browser pre-installed is irrelevant — Playwright installs one per run.
 
-The published site has the data files at the root plus a Leaflet map demo:
+The published site is a searchable, sortable **list** (filter by code/name/address, district, or type) with the data files at the root:
 
 ```
-https://<user>.github.io/<repo>/                  # map demo (site/index.html)
-https://<user>.github.io/<repo>/locations.geojson # map-ready
+https://<user>.github.io/<repo>/                  # searchable list (site/index.html)
+https://<user>.github.io/<repo>/locations.csv     # spreadsheet
 https://<user>.github.io/<repo>/locations.json
 https://<user>.github.io/<repo>/by-district/<district>.json
 https://<user>.github.io/<repo>/meta.json

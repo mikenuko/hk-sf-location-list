@@ -32,6 +32,7 @@ function normalize(rows) {
     if (seen.has(id)) id = `${id}-${seen.get(id) + 1}`; // keep both on rare code collisions
     seen.set(r.id, (seen.get(r.id) || 0) + 1);
     out.push({
+      code: r.id, // SF location code, e.g. "852DDL"
       id,
       name_en: r.name_en, name_tc: r.name_tc,
       address_en: r.address_en, address_tc: r.address_tc,
@@ -54,6 +55,18 @@ const toGeoJSON = (rows) => ({
     properties: { ...r, lat: undefined, lng: undefined },
   })),
 });
+
+const CSV_COLS = ['code', 'name_en', 'name_tc', 'address_en', 'address_tc', 'telephone',
+  'hours_en', 'hours_tc', 'lat', 'lng', 'district', 'sub_district', 'bizTypeCode',
+  'is_station', 'is_locker', 'is_partner', 'cold_chain'];
+const csvCell = (v) => {
+  const s = v == null ? '' : String(v);
+  return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+};
+const toCSV = (rows) =>
+  '﻿' + [CSV_COLS.join(',')] // BOM so Excel reads UTF-8 (Chinese) correctly
+    .concat(rows.map((r) => CSV_COLS.map((c) => csvCell(r[c])).join(',')))
+    .join('\r\n');
 
 function diff(prev, next) {
   const pj = new Map(prev.map((r) => [r.id, JSON.stringify(r)]));
@@ -84,6 +97,7 @@ async function main() {
   const json = JSON.stringify(data, null, 2);
   const hash = createHash('sha256').update(json).digest('hex').slice(0, 12);
   writeFileSync(DATA + 'locations.json', json);
+  writeFileSync(DATA + 'locations.csv', toCSV(data));
   writeFileSync(DATA + 'locations.geojson', JSON.stringify(toGeoJSON(data)));
 
   const districts = [...new Set(data.map((r) => r.district))].sort();
@@ -111,6 +125,7 @@ async function main() {
     changes: { added: changelog.added.length, removed: changelog.removed.length, changed: changelog.changed.length },
     files: {
       all: 'locations.json',
+      csv: 'locations.csv',
       geojson: 'locations.geojson',
       by_district: districts.map((d) => `by-district/${slug(d)}.json`),
       changelog: 'changelog.json',

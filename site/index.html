@@ -4,83 +4,183 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SF HK Pickup Locations</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    :root { --fg: #1a1a1a; --muted: #666; --line: #e3e3e3; --accent: #d0021b; }
+    :root { --fg: #1a1a1a; --muted: #666; --line: #e6e6e6; --accent: #d0021b; --zebra: #fafafa; }
     * { box-sizing: border-box; }
-    html, body { margin: 0; height: 100%; font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--fg); }
-    #app { display: grid; grid-template-rows: auto 1fr; height: 100%; }
-    header { padding: 12px 16px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
-    header h1 { font-size: 16px; margin: 0; }
-    header .stat { color: var(--muted); }
-    header .stat b { color: var(--fg); }
-    header a { color: var(--accent); text-decoration: none; }
-    header .links { margin-left: auto; display: flex; gap: 12px; flex-wrap: wrap; }
-    #map { width: 100%; height: 100%; }
-    .leaflet-popup-content { font: 13px/1.45 system-ui, sans-serif; }
-    .leaflet-popup-content b { display: block; margin-bottom: 2px; }
-    .leaflet-popup-content .tc { color: var(--muted); }
-    .leaflet-popup-content .meta { margin-top: 6px; color: var(--muted); font-size: 12px; }
-    .badge { display: inline-block; padding: 0 6px; border-radius: 10px; background: #f1f1f1; color: #555; font-size: 11px; margin-right: 4px; }
+    body { margin: 0; font: 14px/1.5 system-ui, -apple-system, "Segoe UI", "Microsoft JhengHei", sans-serif; color: var(--fg); }
+    header { padding: 14px 18px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: #fff; z-index: 2; }
+    .row1 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
+    h1 { font-size: 16px; margin: 0; }
+    .stat { color: var(--muted); } .stat b { color: var(--fg); }
+    .links { margin-left: auto; display: flex; gap: 12px; flex-wrap: wrap; }
+    a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+    .controls { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    input, select { padding: 7px 10px; border: 1px solid #ccc; border-radius: 6px; font: inherit; }
+    input#q { flex: 1; min-width: 220px; }
+    .seg { display: inline-flex; border: 1px solid #ccc; border-radius: 6px; overflow: hidden; }
+    .seg button { border: 0; background: #fff; padding: 7px 12px; font: inherit; cursor: pointer; color: var(--muted); }
+    .seg button.on { background: var(--accent); color: #fff; }
+    .wrap { padding: 0 18px 40px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { position: sticky; top: 96px; background: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); cursor: pointer; white-space: nowrap; }
+    th:hover { color: var(--fg); }
+    tbody tr:nth-child(even) { background: var(--zebra); }
+    .code { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-weight: 600; white-space: nowrap; }
+    .addr-cell { max-width: 460px; }
+    .addr-flex { display: flex; gap: 6px; align-items: flex-start; }
+    .copy { flex: none; border: 1px solid #ccc; background: #fff; border-radius: 5px; padding: 2px 7px; font-size: 12px; cursor: pointer; color: var(--muted); white-space: nowrap; }
+    .copy:hover { color: var(--fg); border-color: #999; }
+    .copy.done { color: #137333; border-color: #137333; }
+    .hrs { color: var(--muted); font-size: 13px; max-width: 280px; }
+    .empty { padding: 40px; text-align: center; color: var(--muted); }
   </style>
 </head>
 <body>
-  <div id="app">
-    <header>
+  <header>
+    <div class="row1">
       <h1>SF&nbsp;HK Pickup Locations</h1>
-      <span class="stat"><b id="count">…</b> outlets</span>
+      <span class="stat"><b id="shown">…</b> / <b id="count">…</b> outlets</span>
       <span class="stat">updated <b id="updated">…</b></span>
-      <span class="stat">source <b id="version">…</b></span>
       <nav class="links">
-        <a href="./locations.geojson">GeoJSON</a>
+        <a href="./locations.csv" download>CSV</a>
         <a href="./locations.json">JSON</a>
         <a href="./meta.json">meta</a>
-        <a href="./changelog.json">changelog</a>
       </nav>
-    </header>
-    <div id="map"></div>
+    </div>
+    <div class="controls">
+      <input id="q" type="search" placeholder="Search code, name, address…" autocomplete="off" />
+      <select id="district"><option value="">All districts</option></select>
+      <select id="type">
+        <option value="">All types</option>
+        <option value="is_station">Station</option>
+        <option value="is_locker">Locker</option>
+        <option value="is_partner">Partner</option>
+        <option value="cold_chain">Cold-chain</option>
+      </select>
+      <span class="seg" id="lang" role="group" aria-label="Language">
+        <button data-lang="en" class="on">English</button>
+        <button data-lang="tc">繁體中文</button>
+      </span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <table>
+      <thead>
+        <tr>
+          <th data-k="code">Code</th>
+          <th data-k="name" id="h-name">Name</th>
+          <th data-k="address" id="h-addr">Address</th>
+          <th data-k="district">District</th>
+          <th data-k="hours" id="h-hours">Hours</th>
+          <th data-k="telephone">Phone</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div id="empty" class="empty" hidden>No matches.</div>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    const map = L.map('map').setView([22.36, 114.13], 11);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19, attribution: '&copy; OpenStreetMap'
-    }).addTo(map);
-
-    const esc = (s) => (s == null ? '' : String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])));
-    const popup = (p) => {
-      const tags = [p.is_station && 'station', p.is_locker && 'locker', p.is_partner && 'partner', p.cold_chain && 'cold-chain']
-        .filter(Boolean).map((t) => `<span class="badge">${t}</span>`).join('');
-      return `<b>${esc(p.name_en)}</b>${p.name_tc ? `<span class="tc">${esc(p.name_tc)}</span>` : ''}
-        <div class="meta">${esc(p.address_en)}</div>
-        ${p.hours_en ? `<div class="meta">🕑 ${esc(p.hours_en)}</div>` : ''}
-        ${p.telephone ? `<div class="meta">☎ ${esc(p.telephone)}</div>` : ''}
-        <div class="meta">${tags}</div>`;
-    };
-
-    // Published Pages flattens data to the root (./); local dev serves it from ../data/.
-    const BASES = ['./', '../data/'];
+    const BASES = ['./', '../data/']; // published Pages serves at ./, local dev at ../data/
     const getJSON = async (name) => {
       for (const b of BASES) { try { const r = await fetch(b + name); if (r.ok) return r.json(); } catch (_) {} }
       throw new Error('not found: ' + name);
     };
+    const esc = (s) => (s == null ? '' : String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])));
+    const $ = (id) => document.getElementById(id);
 
-    Promise.all([getJSON('meta.json'), getJSON('locations.geojson')]).then(([meta, geo]) => {
-      document.getElementById('count').textContent = meta.count.toLocaleString();
-      document.getElementById('updated').textContent = (meta.generated_at || '').slice(0, 10);
-      document.getElementById('version').textContent = meta.source_version || '—';
-      const layer = L.geoJSON(geo, {
-        pointToLayer: (f, latlng) => L.circleMarker(latlng, {
-          radius: 4, color: '#d0021b', weight: 1, fillColor: '#d0021b', fillOpacity: 0.6,
-        }),
-        onEachFeature: (f, l) => l.bindPopup(popup(f.properties)),
-      }).addTo(map);
-      try { map.fitBounds(layer.getBounds(), { padding: [20, 20] }); } catch (_) {}
-    }).catch((e) => {
-      document.getElementById('count').textContent = 'failed to load';
-      console.error(e);
+    let ALL = [], sortK = 'code', sortDir = 1;
+    let lang = localStorage.getItem('sfhk_lang') || 'en';
+
+    // Field for current language, falling back to English when a TC value is missing.
+    const f = (r, base) => (lang === 'tc' ? (r[base + '_tc'] || r[base + '_en']) : r[base + '_en']);
+
+    const LABELS = {
+      en: { name: 'Name', address: 'Address', hours: 'Hours', search: 'Search code, name, address…', copy: 'Copy', copied: 'Copied' },
+      tc: { name: '名稱', address: '地址', hours: '營業時間', search: '搜尋編號、名稱、地址…', copy: '複製', copied: '已複製' },
+    };
+
+    const copyText = async (text) => {
+      try { await navigator.clipboard.writeText(text); return true; }
+      catch (_) {
+        const t = document.createElement('textarea'); t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+        document.body.appendChild(t); t.select();
+        let ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+        t.remove(); return ok;
+      }
+    };
+
+    const render = () => {
+      const L = LABELS[lang];
+      const q = $('q').value.trim().toLowerCase();
+      const district = $('district').value, type = $('type').value;
+      let rows = ALL.filter((r) => {
+        if (district && r.district !== district) return false;
+        if (type && !r[type]) return false;
+        if (q) {
+          const hay = `${r.code} ${r.name_en} ${r.name_tc || ''} ${r.address_en} ${r.address_tc || ''}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+      const key = (r) => (sortK === 'name' || sortK === 'address' || sortK === 'hours') ? (f(r, sortK) || '') : (r[sortK] ?? '');
+      rows.sort((a, b) => String(key(a)).localeCompare(String(key(b)), 'en', { numeric: true }) * sortDir);
+
+      $('rows').innerHTML = rows.map((r) => {
+        const addr = f(r, 'address') || '';
+        return `<tr>
+          <td class="code">${esc(r.code)}</td>
+          <td>${esc(f(r, 'name'))}</td>
+          <td class="addr-cell"><div class="addr-flex">
+            <span>${esc(addr)}</span>
+            <button class="copy" data-copy="${esc(addr)}" title="${L.copy}">⧉ ${L.copy}</button>
+          </div></td>
+          <td>${esc(r.district)}</td>
+          <td class="hrs">${esc(f(r, 'hours') || '')}</td>
+          <td>${esc(r.telephone || '')}</td>
+        </tr>`;
+      }).join('');
+      $('shown').textContent = rows.length.toLocaleString();
+      $('empty').hidden = rows.length > 0;
+
+      // Header labels + search placeholder follow the language.
+      $('h-name').textContent = L.name; $('h-addr').textContent = L.address; $('h-hours').textContent = L.hours;
+      $('q').placeholder = L.search;
+    };
+
+    // Copy buttons (event delegation, survives re-render).
+    $('rows').addEventListener('click', async (e) => {
+      const btn = e.target.closest('.copy'); if (!btn) return;
+      if (await copyText(btn.dataset.copy)) {
+        const orig = btn.innerHTML; btn.innerHTML = '✓ ' + LABELS[lang].copied; btn.classList.add('done');
+        setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('done'); }, 1200);
+      }
     });
+
+    // Language toggle.
+    $('lang').addEventListener('click', (e) => {
+      const b = e.target.closest('button[data-lang]'); if (!b) return;
+      lang = b.dataset.lang; localStorage.setItem('sfhk_lang', lang);
+      [...$('lang').children].forEach((c) => c.classList.toggle('on', c.dataset.lang === lang));
+      render();
+    });
+
+    document.querySelectorAll('th[data-k]').forEach((th) => th.addEventListener('click', () => {
+      const k = th.dataset.k; sortDir = sortK === k ? -sortDir : 1; sortK = k; render();
+    }));
+    ['q', 'district', 'type'].forEach((id) => $(id).addEventListener('input', render));
+
+    Promise.all([getJSON('meta.json'), getJSON('locations.json')]).then(([meta, data]) => {
+      ALL = data;
+      $('count').textContent = meta.count.toLocaleString();
+      $('updated').textContent = (meta.generated_at || '').slice(0, 10);
+      const districts = [...new Set(data.map((r) => r.district))].sort();
+      $('district').insertAdjacentHTML('beforeend', districts.map((d) => `<option>${esc(d)}</option>`).join(''));
+      [...$('lang').children].forEach((c) => c.classList.toggle('on', c.dataset.lang === lang));
+      render();
+    }).catch((e) => { $('rows').innerHTML = ''; $('empty').hidden = false; $('empty').textContent = 'Failed to load data.'; console.error(e); });
   </script>
 </body>
 </html>
