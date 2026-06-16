@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-15T21:20:42.036Z",
+  "generated_at": "2026-06-16T21:19:47.807Z",
   "source_version": "20251211",
-  "hash": "a954c5921113",
-  "count": 1684,
-  "tc_coverage": 0.9994061757719715,
+  "hash": "2bd2b61b5d3d",
+  "count": 1682,
+  "tc_coverage": 0.9994054696789536,
   "capability_counts": {
     "station": 117,
-    "locker": 1681,
+    "locker": 1679,
     "partner": 0,
     "cold_chain": 116
   },
@@ -16,7 +16,7 @@
     "Eastern District": 106,
     "Kowloon City District": 103,
     "Kwai Tsing District": 98,
-    "Kwun Tong District": 135,
+    "Kwun Tong District": 134,
     "Lamma Island District": 6,
     "Lantau District": 33,
     "North District": 61,
@@ -26,7 +26,7 @@
     "Southern District": 44,
     "Tai Po District": 90,
     "Tsuen Wan District": 82,
-    "Tuen Mun District": 139,
+    "Tuen Mun District": 138,
     "Wan Chai District": 32,
     "Wong Tai Sin District": 93,
     "Yau Tsim Mong District": 101,
@@ -34,8 +34,8 @@
   },
   "changes": {
     "added": 0,
-    "removed": 0,
-    "changed": 0
+    "removed": 2,
+    "changed": 2
   },
   "files": {
     "all": "locations.json",
