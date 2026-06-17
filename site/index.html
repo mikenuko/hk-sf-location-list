@@ -20,6 +20,9 @@
     .seg { display: inline-flex; border: 1px solid #ccc; border-radius: 6px; overflow: hidden; }
     .seg button { border: 0; background: #fff; padding: 7px 12px; font: inherit; cursor: pointer; color: var(--muted); }
     .seg button.on { background: var(--accent); color: #fff; }
+    .btn { border: 1px solid #ccc; background: #fff; border-radius: 6px; padding: 7px 12px; font: inherit; cursor: pointer; color: var(--fg); }
+    .btn:hover { border-color: #999; }
+    .btn:disabled { opacity: .6; cursor: default; }
     .wrap { padding: 0 18px 40px; }
     table { border-collapse: collapse; width: 100%; table-layout: fixed; }
     th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; word-break: break-word; }
@@ -27,9 +30,10 @@
     th:hover { color: var(--fg); }
     tbody tr:nth-child(even) { background: var(--zebra); }
     /* Fixed column widths keep the copy buttons aligned in one line. */
-    col.c-code { width: 84px; } col.c-district { width: 130px; }
-    col.c-hours { width: 200px; } col.c-phone { width: 104px; }
+    col.c-code { width: 84px; } col.c-dist { width: 92px; } col.c-district { width: 130px; }
+    col.c-hours { width: 190px; } col.c-phone { width: 104px; }
     .code { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-weight: 600; white-space: nowrap; }
+    .dist { white-space: nowrap; color: var(--accent); font-variant-numeric: tabular-nums; }
     .addr-flex { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; }
     .addr-flex > span { min-width: 0; }
     .copy { flex: none; border: 1px solid #ccc; background: #fff; border-radius: 5px; padding: 2px 8px; font-size: 12px; line-height: 1.6; cursor: pointer; color: var(--muted); white-space: nowrap; }
@@ -61,6 +65,7 @@
         <option value="is_partner">Partner</option>
         <option value="cold_chain">Cold-chain</option>
       </select>
+      <button id="near" class="btn">📍 <span id="near-label">Nearest</span></button>
       <span class="seg" id="lang" role="group" aria-label="Language">
         <button data-lang="en" class="on">English</button>
         <button data-lang="tc">繁體中文</button>
@@ -71,12 +76,13 @@
   <div class="wrap">
     <table>
       <colgroup>
-        <col class="c-code" /><col class="c-name" /><col class="c-addr" />
+        <col class="c-code" /><col class="c-dist" /><col class="c-name" /><col class="c-addr" />
         <col class="c-district" /><col class="c-hours" /><col class="c-phone" />
       </colgroup>
       <thead>
         <tr>
           <th data-k="code">Code</th>
+          <th data-k="distance" id="h-dist">Distance</th>
           <th data-k="name" id="h-name">Name</th>
           <th data-k="address" id="h-addr">Address</th>
           <th data-k="district" id="h-district">District</th>
@@ -114,11 +120,20 @@
     const f = (r, base) => (lang === 'tc' ? (r[base + '_tc'] || r[base + '_en']) : r[base + '_en']);
 
     const LABELS = {
-      en: { name: 'Name', address: 'Address', district: 'District', hours: 'Hours', search: 'Search code, name, address…', copy: 'Copy', copied: 'Copied' },
-      tc: { name: '名稱', address: '地址', district: '地區', hours: '營業時間', search: '搜尋編號、名稱、地址…', copy: '複製', copied: '已複製' },
+      en: { name: 'Name', address: 'Address', district: 'District', distance: 'Distance', hours: 'Hours', search: 'Search code, name, address…', copy: 'Copy', copied: 'Copied', near: 'Nearest', locating: 'Locating…', denied: 'Location blocked', geoerr: 'Location unavailable' },
+      tc: { name: '名稱', address: '地址', district: '地區', distance: '距離', hours: '營業時間', search: '搜尋編號、名稱、地址…', copy: '複製', copied: '已複製', near: '最近地點', locating: '定位中…', denied: '定位被拒', geoerr: '無法定位' },
     };
     // District value in the active language (falls back to English).
     const distOf = (r) => (lang === 'tc' ? (r.district_tc || r.district) : r.district);
+
+    let userPos = null, locating = false; // {lat, lng} once the user shares location
+    const haversine = (a, b, c, d) => {
+      const R = 6371, rad = Math.PI / 180;
+      const dLat = (c - a) * rad, dLng = (d - b) * rad;
+      const s = Math.sin(dLat / 2) ** 2 + Math.cos(a * rad) * Math.cos(c * rad) * Math.sin(dLng / 2) ** 2;
+      return 2 * R * Math.asin(Math.sqrt(s)); // km
+    };
+    const fmtDist = (km) => (km == null ? '—' : km < 1 ? `${Math.round(km * 1000)} m` : `${km.toFixed(km < 10 ? 1 : 0)} km`);
 
     const copyText = async (text) => {
       try { await navigator.clipboard.writeText(text); return true; }
@@ -143,15 +158,20 @@
         }
         return true;
       });
-      const key = (r) => sortK === 'district' ? distOf(r)
-        : (sortK === 'name' || sortK === 'address' || sortK === 'hours') ? (f(r, sortK) || '')
-        : (r[sortK] ?? '');
-      rows.sort((a, b) => String(key(a)).localeCompare(String(key(b)), 'en', { numeric: true }) * sortDir);
+      if (sortK === 'distance') {
+        rows.sort((a, b) => ((a._dist ?? Infinity) - (b._dist ?? Infinity)) * sortDir);
+      } else {
+        const key = (r) => sortK === 'district' ? distOf(r)
+          : (sortK === 'name' || sortK === 'address' || sortK === 'hours') ? (f(r, sortK) || '')
+          : (r[sortK] ?? '');
+        rows.sort((a, b) => String(key(a)).localeCompare(String(key(b)), 'en', { numeric: true }) * sortDir);
+      }
 
       $('rows').innerHTML = rows.map((r) => {
         const addr = f(r, 'address') || '';
         return `<tr>
           <td class="code">${esc(r.code)}</td>
+          <td class="dist">${userPos ? esc(fmtDist(r._dist)) : '—'}</td>
           <td>${esc(f(r, 'name'))}</td>
           <td><div class="addr-flex">
             <span>${esc(addr)}</span>
@@ -168,6 +188,8 @@
       // Header labels + search placeholder follow the language.
       $('h-name').textContent = L.name; $('h-addr').textContent = L.address;
       $('h-district').textContent = L.district; $('h-hours').textContent = L.hours;
+      $('h-dist').textContent = L.distance;
+      if (!locating) $('near-label').textContent = L.near;
       $('q').placeholder = L.search;
     };
 
@@ -187,6 +209,31 @@
       [...$('lang').children].forEach((c) => c.classList.toggle('on', c.dataset.lang === lang));
       buildDistrictOptions();
       render();
+    });
+
+    // Find nearest: get the user's location, measure distance to every outlet, sort ascending.
+    $('near').addEventListener('click', () => {
+      if (locating) return;
+      if (!navigator.geolocation) { $('near-label').textContent = LABELS[lang].geoerr; return; }
+      locating = true;
+      $('near').disabled = true;
+      $('near-label').textContent = LABELS[lang].locating;
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          userPos = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+          ALL.forEach((r) => { r._dist = haversine(userPos.lat, userPos.lng, r.lat, r.lng); });
+          locating = false; $('near').disabled = false; $('near-label').textContent = LABELS[lang].near;
+          sortK = 'distance'; sortDir = 1;
+          render();
+          window.scrollTo({ top: 0 });
+        },
+        (err) => {
+          locating = false; $('near').disabled = false;
+          $('near-label').textContent = err.code === err.PERMISSION_DENIED ? LABELS[lang].denied : LABELS[lang].geoerr;
+          setTimeout(() => { $('near-label').textContent = LABELS[lang].near; }, 2500);
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 },
+      );
     });
 
     document.querySelectorAll('th[data-k]').forEach((th) => th.addEventListener('click', () => {
