@@ -7,19 +7,21 @@ const DATA = fileURLToPath(new URL('../data/', import.meta.url));
 const SNAPSHOT = DATA + '.snapshot.json';
 const MIN_RETAIN = 0.8; // abort publish if outlet count drops below 80% of last run
 
-// SF's own "Service Point Type" dropdown maps to these bizTypeCode members.
-// NOTE: bizTypeCode is a capability set, not a clean physical type — storeType
-// is null on this endpoint, so these are faithful flags rather than a taxonomy.
-const has = (set, codes) => codes.some((c) => set.has(String(c)));
-function classify(bizTypeCode) {
-  const set = new Set(String(bizTypeCode || '').split(',').map((s) => s.trim()).filter(Boolean));
-  return {
-    services: [...set],
-    is_station: has(set, [1, 4]),
-    is_locker: has(set, [6]),
-    is_partner: has(set, [8, 9, 10]),
-    cold_chain: set.has('1'),
-  };
+// Physical type. storeType is null and bizTypeCode is a capability set, so we
+// classify from the name — lockers and convenience/partner shops name themselves
+// — with a bizTypeCode fallback: unmanned cooperation points lack both the "5"
+// (manned SF store) and "1" (cold-chain station) service flags.
+const LOCKER = /\bSF\s*Locker\b|順豐智能櫃|智能櫃|Cold\s*Chain\s*Locker|EF\s*Locker/i;
+const PARTNER = /便利店|Conv\.|\bOK\b|VanGO|Circle\s?K|U\s?Select|U購|7-?Eleven|阿信屋|\b759\b|Indiv\.?\s?Store|Individual\s*Store|個體店|士多/i;
+function classify(r) {
+  const name = `${r.name_en || ''} ${r.name_tc || ''}`;
+  const set = new Set(String(r.bizTypeCode || '').split(',').map((s) => s.trim()).filter(Boolean));
+  let type;
+  if (LOCKER.test(name)) type = 'locker';
+  else if (PARTNER.test(name)) type = 'partner';
+  else if (!set.has('5') && !set.has('1')) type = 'partner';
+  else type = 'station';
+  return { type, cold_chain: set.has('1') };
 }
 
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -42,7 +44,7 @@ function normalize(rows) {
       district: r.city, district_tc: r.city_tc || null,
       sub_district: r.district, sub_district_tc: r.district_tc || null,
       bizTypeCode: r.bizTypeCode,
-      ...classify(r.bizTypeCode),
+      ...classify(r),
     });
   }
   return out.sort((a, b) => a.id.localeCompare(b.id));
@@ -59,7 +61,7 @@ const toGeoJSON = (rows) => ({
 
 const CSV_COLS = ['code', 'name_en', 'name_tc', 'address_en', 'address_tc', 'telephone',
   'hours_en', 'hours_tc', 'lat', 'lng', 'district', 'district_tc', 'sub_district', 'sub_district_tc',
-  'bizTypeCode', 'is_station', 'is_locker', 'is_partner', 'cold_chain'];
+  'type', 'bizTypeCode', 'cold_chain'];
 const csvCell = (v) => {
   const s = v == null ? '' : String(v);
   return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
@@ -116,10 +118,10 @@ async function main() {
     hash,
     count: data.length,
     tc_coverage: count(data, (r) => r.name_tc) / data.length,
-    capability_counts: {
-      station: count(data, (r) => r.is_station),
-      locker: count(data, (r) => r.is_locker),
-      partner: count(data, (r) => r.is_partner),
+    type_counts: {
+      station: count(data, (r) => r.type === 'station'),
+      partner: count(data, (r) => r.type === 'partner'),
+      locker: count(data, (r) => r.type === 'locker'),
       cold_chain: count(data, (r) => r.cold_chain),
     },
     districts: Object.fromEntries(districts.map((d) => [d, count(data, (r) => r.district === d)])),

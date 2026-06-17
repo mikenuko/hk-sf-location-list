@@ -58,13 +58,7 @@
     <div class="controls">
       <input id="q" type="search" placeholder="Search code, name, address…" autocomplete="off" />
       <select id="district"><option value="">All districts</option></select>
-      <select id="type">
-        <option value="">All types</option>
-        <option value="is_station">Station</option>
-        <option value="is_locker">Locker</option>
-        <option value="is_partner">Partner</option>
-        <option value="cold_chain">Cold-chain</option>
-      </select>
+      <select id="type"></select>
       <button id="near" class="btn">📍 <span id="near-label">Nearest</span></button>
       <span class="seg" id="lang" role="group" aria-label="Language">
         <button data-lang="en" class="on">English</button>
@@ -116,6 +110,17 @@
       sel.value = cur;
     };
 
+    const TYPE_LABELS = {
+      en: { '': 'All types', station: 'Station', partner: 'Partner', locker: 'Locker', cold_chain: 'Cold-chain' },
+      tc: { '': '所有類型', station: '順豐站', partner: '合作點', locker: '智能櫃', cold_chain: '冷運' },
+    };
+    const buildTypeOptions = () => {
+      const sel = $('type'), cur = sel.value, T = TYPE_LABELS[lang];
+      sel.innerHTML = ['', 'station', 'partner', 'locker', 'cold_chain']
+        .map((v) => `<option value="${v}">${esc(T[v])}</option>`).join('');
+      sel.value = cur;
+    };
+
     // Field for current language, falling back to English when a TC value is missing.
     const f = (r, base) => (lang === 'tc' ? (r[base + '_tc'] || r[base + '_en']) : r[base + '_en']);
 
@@ -151,7 +156,7 @@
       const district = $('district').value, type = $('type').value;
       let rows = ALL.filter((r) => {
         if (district && r.district !== district) return false;
-        if (type && !r[type]) return false;
+        if (type) { if (type === 'cold_chain') { if (!r.cold_chain) return false; } else if (r.type !== type) return false; }
         if (q) {
           const hay = `${r.code} ${r.name_en} ${r.name_tc || ''} ${r.address_en} ${r.address_tc || ''}`.toLowerCase();
           if (!hay.includes(q)) return false;
@@ -208,6 +213,7 @@
       lang = b.dataset.lang; localStorage.setItem('sfhk_lang', lang);
       [...$('lang').children].forEach((c) => c.classList.toggle('on', c.dataset.lang === lang));
       buildDistrictOptions();
+      buildTypeOptions();
       render();
     });
 
@@ -247,6 +253,7 @@
       $('updated').textContent = (meta.generated_at || '').slice(0, 10);
       ALL.forEach((r) => { if (r.district_tc && !distMap[r.district]) distMap[r.district] = r.district_tc; });
       buildDistrictOptions();
+      buildTypeOptions();
       [...$('lang').children].forEach((c) => c.classList.toggle('on', c.dataset.lang === lang));
       render();
     }).catch((e) => { $('rows').innerHTML = ''; $('empty').hidden = false; $('empty').textContent = 'Failed to load data.'; console.error(e); });

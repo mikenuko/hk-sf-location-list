@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-17T07:31:20.718Z",
+  "generated_at": "2026-06-17T07:50:46.574Z",
   "source_version": "20251211",
-  "hash": "87651b9a7d18",
+  "hash": "d8cb7fe0e6d4",
   "count": 1682,
   "tc_coverage": 0.9994054696789536,
-  "capability_counts": {
-    "station": 117,
-    "locker": 1679,
-    "partner": 0,
+  "type_counts": {
+    "station": 301,
+    "partner": 617,
+    "locker": 764,
     "cold_chain": 116
   },
   "districts": {
@@ -35,7 +35,7 @@
   "changes": {
     "added": 0,
     "removed": 0,
-    "changed": 0
+    "changed": 1682
   },
   "files": {
     "all": "locations.json",

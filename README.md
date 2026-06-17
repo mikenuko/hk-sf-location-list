@@ -25,13 +25,13 @@ Latest **SF Express Hong Kong** service points as static **JSON + GeoJSON**, ref
   "hours_en": "...", "hours_tc": "...",
   "lat": 22.45, "lng": 114.16,
   "district": "Tai Po District", "sub_district": "Tai Po",
+  "type": "station",          // station | partner | locker
   "bizTypeCode": "1,3,5,6,7",
-  "services": ["1","3","5","6","7"],
-  "is_station": true, "is_locker": true, "is_partner": false, "cold_chain": true
+  "cold_chain": true
 }
 ```
 
-> **On `type`:** the upstream `queryServiceNetworkList` endpoint returns `storeType: null` and `bizTypeCode` is a *capability* set, not a clean physical type. The `is_*` flags mirror SF's own "Service Point Type" dropdown (Station = `1|4`, Locker = `6`, Partner = `8|9|10`) but overlap heavily. EF Lockers appear to be a **separate feed** not covered here — a candidate for a future source.
+> **On `type`:** the upstream `queryServiceNetworkList` endpoint returns `storeType: null` and `bizTypeCode` is only a *capability* set, so `type` is derived: **locker** when the name is an `SF Locker`, **partner** for convenience/cooperation shops (便利店, OK, VanGO, Circle K, individual stores…), otherwise **station** (manned SF stores, which carry the `5`/`1` service flags). `cold_chain` = bizTypeCode contains `1`. Current split: ~301 station / ~617 partner / ~764 locker.
 
 ## How it works
 
