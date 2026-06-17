@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T07:50:46.574Z",
+  "generated_at": "2026-06-17T07:59:03.537Z",
   "source_version": "20251211",
   "hash": "d8cb7fe0e6d4",
   "count": 1682,
@@ -35,7 +35,7 @@
   "changes": {
     "added": 0,
     "removed": 0,
-    "changed": 1682
+    "changed": 0
   },
   "files": {
     "all": "locations.json",
