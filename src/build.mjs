@@ -39,7 +39,8 @@ function normalize(rows) {
       telephone: r.telephone || null,
       hours_en: r.serviceTime_en || null, hours_tc: r.serviceTime_tc || null,
       lat: r.lat, lng: r.lng,
-      district: r.city, sub_district: r.district,
+      district: r.city, district_tc: r.city_tc || null,
+      sub_district: r.district, sub_district_tc: r.district_tc || null,
       bizTypeCode: r.bizTypeCode,
       ...classify(r.bizTypeCode),
     });
@@ -57,8 +58,8 @@ const toGeoJSON = (rows) => ({
 });
 
 const CSV_COLS = ['code', 'name_en', 'name_tc', 'address_en', 'address_tc', 'telephone',
-  'hours_en', 'hours_tc', 'lat', 'lng', 'district', 'sub_district', 'bizTypeCode',
-  'is_station', 'is_locker', 'is_partner', 'cold_chain'];
+  'hours_en', 'hours_tc', 'lat', 'lng', 'district', 'district_tc', 'sub_district', 'sub_district_tc',
+  'bizTypeCode', 'is_station', 'is_locker', 'is_partner', 'cold_chain'];
 const csvCell = (v) => {
   const s = v == null ? '' : String(v);
   return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;

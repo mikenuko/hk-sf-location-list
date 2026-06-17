@@ -96,6 +96,8 @@ export async function fetchOutlets({ headless = true } = {}) {
                 e.name_tc = o.name;
                 e.address_tc = o.address;
                 e.serviceTime_tc = o.serviceTime;
+                e.city_tc = o.city; // Chinese district (county) name
+                e.district_tc = o.district; // Chinese sub-district (town) name
                 tcPatched++;
               }
             }

@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-16T21:19:47.807Z",
+  "generated_at": "2026-06-17T06:31:40.102Z",
   "source_version": "20251211",
-  "hash": "2bd2b61b5d3d",
+  "hash": "87651b9a7d18",
   "count": 1682,
   "tc_coverage": 0.9994054696789536,
   "capability_counts": {
@@ -35,7 +35,7 @@
   "changes": {
     "added": 0,
     "removed": 2,
-    "changed": 2
+    "changed": 1682
   },
   "files": {
     "all": "locations.json",

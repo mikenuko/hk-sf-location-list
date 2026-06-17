@@ -21,18 +21,21 @@
     .seg button { border: 0; background: #fff; padding: 7px 12px; font: inherit; cursor: pointer; color: var(--muted); }
     .seg button.on { background: var(--accent); color: #fff; }
     .wrap { padding: 0 18px 40px; }
-    table { border-collapse: collapse; width: 100%; }
-    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; word-break: break-word; }
     th { position: sticky; top: 96px; background: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); cursor: pointer; white-space: nowrap; }
     th:hover { color: var(--fg); }
     tbody tr:nth-child(even) { background: var(--zebra); }
+    /* Fixed column widths keep the copy buttons aligned in one line. */
+    col.c-code { width: 84px; } col.c-district { width: 130px; }
+    col.c-hours { width: 200px; } col.c-phone { width: 104px; }
     .code { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-weight: 600; white-space: nowrap; }
-    .addr-cell { max-width: 460px; }
-    .addr-flex { display: flex; gap: 6px; align-items: flex-start; }
-    .copy { flex: none; border: 1px solid #ccc; background: #fff; border-radius: 5px; padding: 2px 7px; font-size: 12px; cursor: pointer; color: var(--muted); white-space: nowrap; }
+    .addr-flex { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; }
+    .addr-flex > span { min-width: 0; }
+    .copy { flex: none; border: 1px solid #ccc; background: #fff; border-radius: 5px; padding: 2px 8px; font-size: 12px; line-height: 1.6; cursor: pointer; color: var(--muted); white-space: nowrap; }
     .copy:hover { color: var(--fg); border-color: #999; }
     .copy.done { color: #137333; border-color: #137333; }
-    .hrs { color: var(--muted); font-size: 13px; max-width: 280px; }
+    .hrs { color: var(--muted); font-size: 13px; }
     .empty { padding: 40px; text-align: center; color: var(--muted); }
   </style>
 </head>
@@ -67,12 +70,16 @@
 
   <div class="wrap">
     <table>
+      <colgroup>
+        <col class="c-code" /><col class="c-name" /><col class="c-addr" />
+        <col class="c-district" /><col class="c-hours" /><col class="c-phone" />
+      </colgroup>
       <thead>
         <tr>
           <th data-k="code">Code</th>
           <th data-k="name" id="h-name">Name</th>
           <th data-k="address" id="h-addr">Address</th>
-          <th data-k="district">District</th>
+          <th data-k="district" id="h-district">District</th>
           <th data-k="hours" id="h-hours">Hours</th>
           <th data-k="telephone">Phone</th>
         </tr>
@@ -91,16 +98,27 @@
     const esc = (s) => (s == null ? '' : String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])));
     const $ = (id) => document.getElementById(id);
 
-    let ALL = [], sortK = 'code', sortDir = 1;
+    let ALL = [], sortK = 'code', sortDir = 1, distMap = {};
     let lang = localStorage.getItem('sfhk_lang') || 'en';
+
+    const buildDistrictOptions = () => {
+      const sel = $('district'), cur = sel.value;
+      const ens = [...new Set(ALL.map((r) => r.district))].sort();
+      const label = (en) => (lang === 'tc' ? (distMap[en] || en) : en);
+      sel.innerHTML = `<option value="">${lang === 'tc' ? '所有地區' : 'All districts'}</option>`
+        + ens.map((en) => `<option value="${esc(en)}">${esc(label(en))}</option>`).join('');
+      sel.value = cur;
+    };
 
     // Field for current language, falling back to English when a TC value is missing.
     const f = (r, base) => (lang === 'tc' ? (r[base + '_tc'] || r[base + '_en']) : r[base + '_en']);
 
     const LABELS = {
-      en: { name: 'Name', address: 'Address', hours: 'Hours', search: 'Search code, name, address…', copy: 'Copy', copied: 'Copied' },
-      tc: { name: '名稱', address: '地址', hours: '營業時間', search: '搜尋編號、名稱、地址…', copy: '複製', copied: '已複製' },
+      en: { name: 'Name', address: 'Address', district: 'District', hours: 'Hours', search: 'Search code, name, address…', copy: 'Copy', copied: 'Copied' },
+      tc: { name: '名稱', address: '地址', district: '地區', hours: '營業時間', search: '搜尋編號、名稱、地址…', copy: '複製', copied: '已複製' },
     };
+    // District value in the active language (falls back to English).
+    const distOf = (r) => (lang === 'tc' ? (r.district_tc || r.district) : r.district);
 
     const copyText = async (text) => {
       try { await navigator.clipboard.writeText(text); return true; }
@@ -125,7 +143,9 @@
         }
         return true;
       });
-      const key = (r) => (sortK === 'name' || sortK === 'address' || sortK === 'hours') ? (f(r, sortK) || '') : (r[sortK] ?? '');
+      const key = (r) => sortK === 'district' ? distOf(r)
+        : (sortK === 'name' || sortK === 'address' || sortK === 'hours') ? (f(r, sortK) || '')
+        : (r[sortK] ?? '');
       rows.sort((a, b) => String(key(a)).localeCompare(String(key(b)), 'en', { numeric: true }) * sortDir);
 
       $('rows').innerHTML = rows.map((r) => {
@@ -133,11 +153,11 @@
         return `<tr>
           <td class="code">${esc(r.code)}</td>
           <td>${esc(f(r, 'name'))}</td>
-          <td class="addr-cell"><div class="addr-flex">
+          <td><div class="addr-flex">
             <span>${esc(addr)}</span>
             <button class="copy" data-copy="${esc(addr)}" title="${L.copy}">⧉ ${L.copy}</button>
           </div></td>
-          <td>${esc(r.district)}</td>
+          <td>${esc(distOf(r))}</td>
           <td class="hrs">${esc(f(r, 'hours') || '')}</td>
           <td>${esc(r.telephone || '')}</td>
         </tr>`;
@@ -146,7 +166,8 @@
       $('empty').hidden = rows.length > 0;
 
       // Header labels + search placeholder follow the language.
-      $('h-name').textContent = L.name; $('h-addr').textContent = L.address; $('h-hours').textContent = L.hours;
+      $('h-name').textContent = L.name; $('h-addr').textContent = L.address;
+      $('h-district').textContent = L.district; $('h-hours').textContent = L.hours;
       $('q').placeholder = L.search;
     };
 
@@ -164,6 +185,7 @@
       const b = e.target.closest('button[data-lang]'); if (!b) return;
       lang = b.dataset.lang; localStorage.setItem('sfhk_lang', lang);
       [...$('lang').children].forEach((c) => c.classList.toggle('on', c.dataset.lang === lang));
+      buildDistrictOptions();
       render();
     });
 
@@ -176,8 +198,8 @@
       ALL = data;
       $('count').textContent = meta.count.toLocaleString();
       $('updated').textContent = (meta.generated_at || '').slice(0, 10);
-      const districts = [...new Set(data.map((r) => r.district))].sort();
-      $('district').insertAdjacentHTML('beforeend', districts.map((d) => `<option>${esc(d)}</option>`).join(''));
+      ALL.forEach((r) => { if (r.district_tc && !distMap[r.district]) distMap[r.district] = r.district_tc; });
+      buildDistrictOptions();
       [...$('lang').children].forEach((c) => c.classList.toggle('on', c.dataset.lang === lang));
       render();
     }).catch((e) => { $('rows').innerHTML = ''; $('empty').hidden = false; $('empty').textContent = 'Failed to load data.'; console.error(e); });
