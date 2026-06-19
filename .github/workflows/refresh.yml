@@ -6,20 +6,19 @@ on:
   workflow_dispatch: {} # allow manual runs
 
 permissions:
-  contents: write # commit refreshed data back to the repo
-  pages: write # deploy to GitHub Pages
-  id-token: write # required by deploy-pages
+  contents: write # commit refreshed data back to the repo (audit trail)
 
 concurrency:
-  group: pages # match GitHub's Pages concurrency convention so overlapping deploys don't collide
-  cancel-in-progress: true
+  group: refresh
+  cancel-in-progress: false # let an in-flight scrape finish; runs are idempotent
 
 jobs:
   refresh:
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+    # Runs on the self-hosted runner on mikeneko-docker-main (HK IP clears the SF WAF cleanly).
+    runs-on: [self-hosted, sfhk]
+    env:
+      # Where the published JSON lands on the Docker host. Override in the runner env if needed.
+      DEPLOY_DIR: ${{ vars.SFHK_DEPLOY_DIR || '/srv/sfhk/data' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -50,17 +49,10 @@ jobs:
             git push
           fi
 
-      # Publish the data files + landing page to GitHub Pages.
-      - name: Assemble Pages site
+      # "Deploy" = publish the JSON to the Docker host directory. Atomic rsync,
+      # --delete keeps removed district files from lingering. No UI, no Pages.
+      - name: Publish JSON to server
         run: |
-          mkdir -p _site
-          cp -r data/. _site/
-          cp site/index.html _site/index.html
-          rm -f _site/.snapshot.json   # internal diffing artifact, not for publishing
-
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-      - id: deploy
-        uses: actions/deploy-pages@v4
+          mkdir -p "$DEPLOY_DIR"
+          rsync -a --delete --exclude='.snapshot.json' data/ "$DEPLOY_DIR"/
+          echo "Published $(ls -1 "$DEPLOY_DIR" | wc -l) entries to $DEPLOY_DIR"

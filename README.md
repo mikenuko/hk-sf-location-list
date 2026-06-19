@@ -1,6 +1,6 @@
 # SF HK Pickup Locations
 
-Latest **SF Express Hong Kong** service points as static **JSON + GeoJSON**, refreshed daily by GitHub Actions. No runtime server — the committed `data/` folder *is* the API.
+Latest **SF Express Hong Kong** service points as static **JSON + GeoJSON**, refreshed daily by a **self-hosted GitHub Actions runner** that publishes the files to a directory on the Docker host (`/srv/sfhk/data`). The committed `data/` folder *is* the API; the host directory is the served copy. No UI, no GitHub Pages.
 
 ## Data
 
@@ -47,18 +47,16 @@ npm run refresh                    # writes data/
 
 `HEADED=1` to watch the browser; `PW_CHANNEL=chromium` to use Playwright's bundled Chromium instead of system Chrome.
 
-## Schedule & serving
+## Schedule & deploy
 
-`.github/workflows/refresh.yml` runs daily (~04:17 HKT), installs Chromium in the runner, rebuilds `data/`, commits only when something changed, then **publishes to GitHub Pages**. The runner having no browser pre-installed is irrelevant — Playwright installs one per run.
+`.github/workflows/refresh.yml` runs daily (~04:17 HKT) on a **self-hosted runner** (`runs-on: [self-hosted, sfhk]`) on `mikeneko-docker-main`. It installs Chromium per run, rebuilds `data/`, commits only when something changed (audit trail), then **rsyncs the JSON to `/srv/sfhk/data`** on the host. Running on an HK IP also clears the SF Huawei WAF more reliably than cloud runners.
 
-The published site is a searchable, sortable **list** (filter by code/name/address, district, or type) with the data files at the root:
+Serving the files is optional (see `deploy/`):
 
 ```
-https://<user>.github.io/<repo>/                  # searchable list (site/index.html)
-https://<user>.github.io/<repo>/locations.csv     # spreadsheet
-https://<user>.github.io/<repo>/locations.json
-https://<user>.github.io/<repo>/by-district/<district>.json
-https://<user>.github.io/<repo>/meta.json
+http://<host>:8088/locations.json                       # nginx:alpine (deploy/docker-compose.yml)
+https://<host>.<tailnet>.ts.net/locations.json          # Tailscale HTTPS, private to your tailnet
+/srv/sfhk/data/locations.json                            # raw files; mount into other containers
 ```
 
-**One-time setup:** repo **Settings → Pages → Source → GitHub Actions**. After that every refresh redeploys automatically.
+**Setup:** see [`deploy/README.md`](deploy/README.md) for the self-hosted runner install, host prerequisites, and Tailscale commands.
