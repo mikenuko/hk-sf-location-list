@@ -25,16 +25,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
 
-      - run: npm ci
-
-      # Pinned Chromium (matches the installed playwright version) + its OS libs.
-      - run: npx playwright install --with-deps chromium
-
+      # No dependencies (signed fetch, no browser) — just run the build.
       - name: Build dataset
-        env:
-          PW_CHANNEL: chromium
         run: npm run refresh
 
       - name: Commit if changed

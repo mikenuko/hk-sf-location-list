@@ -35,17 +35,15 @@ Latest **SF Express Hong Kong** service points as static **JSON + GeoJSON**, ref
 
 ## How it works
 
-`src/fetch.mjs` drives a real Chrome (Playwright) to `hk.sf-express.com/hk/en/store` and calls the gateway in-page — required because a Huawei WAF blocks non-browser TLS fingerprints. It iterates all 21 HK districts (a flat query is capped at 1000; the true total is ~1,684) in EN and TC, then `src/build.mjs` normalizes, diffs against the last snapshot, applies a >20%-drop guardrail, and writes `data/`.
+`src/fetch.mjs` calls SF's `queryServiceNetworkList` API directly with a **signed request** (no browser). SF added request signing ~2026-06-18: each call needs `appId`/`nonce`/`timestamp`/`sign` headers, where `sign` is an MD5 over the alphabetically-sorted `appId/appSecret/nonce/timestamp/body` params (algorithm reverse-engineered from their Next.js bundle). It iterates all 20 HK districts (a flat query is gateway-capped; the true total is ~1,686) in EN and TC, then `src/build.mjs` normalizes, diffs against the last snapshot, applies absolute (≥500) and relative (>20%-drop) guardrails, and writes `data/`.
 
 ## Run locally
 
 ```bash
-npm ci
-npx playwright install chromium   # or rely on installed Google Chrome (default channel)
-npm run refresh                    # writes data/
+npm run refresh    # writes data/ — no dependencies, no browser, ~30s
 ```
 
-`HEADED=1` to watch the browser; `PW_CHANNEL=chromium` to use Playwright's bundled Chromium instead of system Chrome.
+The signing credentials default to the public `commonSign` values from SF's site; override with `SF_APP_ID` / `SF_APP_SECRET` env vars if they ever rotate.
 
 ## Schedule & deploy
 

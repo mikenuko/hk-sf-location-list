@@ -6,8 +6,5 @@
     "refresh": "node src/build.mjs"
   },
   "license": "MIT",
-  "type": "module",
-  "dependencies": {
-    "playwright": "^1.60.0"
-  }
+  "type": "module"
 }
