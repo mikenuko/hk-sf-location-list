@@ -11,8 +11,8 @@ permissions:
   id-token: write # required by deploy-pages
 
 concurrency:
-  group: refresh
-  cancel-in-progress: false
+  group: pages # match GitHub's Pages concurrency convention so overlapping deploys don't collide
+  cancel-in-progress: true
 
 jobs:
   refresh:

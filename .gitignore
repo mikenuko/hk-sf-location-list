@@ -2,3 +2,4 @@ node_modules/
 *.log
 probe-*.mjs
 _site/
+data/.snapshot.json
