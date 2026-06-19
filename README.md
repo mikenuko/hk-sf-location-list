@@ -1,6 +1,6 @@
 # SF HK Pickup Locations
 
-Latest **SF Express Hong Kong** service points as static **JSON + GeoJSON**, refreshed daily by a **self-hosted GitHub Actions runner** that publishes the files to a directory on the Docker host (`/srv/sfhk/data`). The committed `data/` folder *is* the API; the host directory is the served copy. No UI, no GitHub Pages.
+Latest **SF Express Hong Kong** service points as static **JSON + GeoJSON**, refreshed daily by a **self-hosted GitHub Actions runner** that writes the files to a local directory on the runner's own server (`$DEPLOY_DIR`, default `/srv/sfhk/data`). The committed `data/` folder *is* the API; the server directory is the published copy. No UI, no GitHub Pages, no Docker required.
 
 ## Data
 
@@ -49,14 +49,14 @@ npm run refresh                    # writes data/
 
 ## Schedule & deploy
 
-`.github/workflows/refresh.yml` runs daily (~04:17 HKT) on a **self-hosted runner** (`runs-on: [self-hosted, sfhk]`) on `mikeneko-docker-main`. It installs Chromium per run, rebuilds `data/`, commits only when something changed (audit trail), then **rsyncs the JSON to `/srv/sfhk/data`** on the host. Running on an HK IP also clears the SF Huawei WAF more reliably than cloud runners.
+`.github/workflows/refresh.yml` runs daily (~04:17 HKT) on a **self-hosted runner** (`runs-on: [self-hosted, sfhk]`). It installs Chromium per run, rebuilds `data/`, commits only when something changed (audit trail), then **rsyncs the JSON to `$DEPLOY_DIR`** (a local path on the runner's own server). Running on an HK IP also clears the SF Huawei WAF more reliably than cloud runners.
 
-Serving the files is optional (see `deploy/`):
+The deploy is just a local file copy — whatever consumes the data reads it straight off disk:
 
 ```
-http://<host>:8088/locations.json                       # nginx:alpine (deploy/docker-compose.yml)
-https://<host>.<tailnet>.ts.net/locations.json          # Tailscale HTTPS, private to your tailnet
-/srv/sfhk/data/locations.json                            # raw files; mount into other containers
+$DEPLOY_DIR/locations.json          # all outlets (flat array)
+$DEPLOY_DIR/by-district/<d>.json    # one file per HK district
+$DEPLOY_DIR/meta.json               # version, counts, hash, district index
 ```
 
-**Setup:** see [`deploy/README.md`](deploy/README.md) for the self-hosted runner install, host prerequisites, and Tailscale commands.
+**Setup:** see [`deploy/README.md`](deploy/README.md) for the self-hosted runner install, host prerequisites, and where the files land.
