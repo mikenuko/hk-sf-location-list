@@ -88,6 +88,15 @@ async function main() {
   const data = normalize(rows);
   console.log(`Fetched ${data.length} outlets (source ${sourceVersion}, ${tcPatched} with TC).`);
 
+  // Absolute floor: a healthy scrape returns ~1,681 outlets. A near-empty result
+  // means the upstream API rejected us (e.g. SF added request signing) — never
+  // publish that. Independent of the snapshot baseline (which is empty on a fresh
+  // runner, so the relative guardrail alone would let garbage through).
+  const MIN_ABSOLUTE = 500;
+  if (data.length < MIN_ABSOLUTE) {
+    throw new Error(`Guardrail: only ${data.length} outlets (< ${MIN_ABSOLUTE} floor). Upstream scrape likely failed/blocked. Aborting publish.`);
+  }
+
   const prev = existsSync(SNAPSHOT) ? JSON.parse(readFileSync(SNAPSHOT, 'utf8')) : [];
   if (prev.length && data.length < prev.length * MIN_RETAIN) {
     throw new Error(`Guardrail: ${data.length} outlets < ${MIN_RETAIN * 100}% of previous ${prev.length}. Aborting publish.`);
