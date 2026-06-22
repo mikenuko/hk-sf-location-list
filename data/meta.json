@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-21T20:48:00.449Z",
+  "generated_at": "2026-06-22T21:16:44.416Z",
   "source_version": "20251211",
-  "hash": "f70f9743d168",
-  "count": 1683,
-  "tc_coverage": 0.9994058229352347,
+  "hash": "861891b8e381",
+  "count": 1681,
+  "tc_coverage": 0.9994051160023796,
   "type_counts": {
     "station": 301,
-    "partner": 616,
-    "locker": 766,
+    "partner": 615,
+    "locker": 765,
     "cold_chain": 116
   },
   "districts": {
@@ -21,19 +21,19 @@
     "Lantau District": 33,
     "North District": 61,
     "Sai Kung District": 86,
-    "Sha Tin District": 179,
+    "Sha Tin District": 178,
     "Sham Shui Po District": 89,
     "Southern District": 45,
     "Tai Po District": 89,
     "Tsuen Wan District": 82,
     "Tuen Mun District": 140,
     "Wan Chai District": 31,
-    "Wong Tai Sin District": 90,
+    "Wong Tai Sin District": 89,
     "Yau Tsim Mong District": 101,
     "Yuen Long District": 156
   },
   "changes": {
-    "added": 1683,
+    "added": 1681,
     "removed": 0,
     "changed": 0
   },
