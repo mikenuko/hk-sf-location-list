@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-23T20:58:24.789Z",
+  "generated_at": "2026-06-24T20:53:45.122Z",
   "source_version": "20251211",
-  "hash": "498bf44a3e5d",
-  "count": 1677,
-  "tc_coverage": 0.9994036970781157,
+  "hash": "bd68b7ef27c9",
+  "count": 1678,
+  "tc_coverage": 0.9994040524433849,
   "type_counts": {
     "station": 301,
-    "partner": 611,
+    "partner": 612,
     "locker": 765,
     "cold_chain": 116
   },
@@ -24,16 +24,16 @@
     "Sha Tin District": 178,
     "Sham Shui Po District": 89,
     "Southern District": 45,
-    "Tai Po District": 89,
-    "Tsuen Wan District": 82,
-    "Tuen Mun District": 139,
+    "Tai Po District": 90,
+    "Tsuen Wan District": 81,
+    "Tuen Mun District": 140,
     "Wan Chai District": 30,
     "Wong Tai Sin District": 89,
     "Yau Tsim Mong District": 101,
     "Yuen Long District": 156
   },
   "changes": {
-    "added": 1677,
+    "added": 1678,
     "removed": 0,
     "changed": 0
   },
