@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-07-10T21:20:06.973Z",
+  "generated_at": "2026-07-11T21:03:30.488Z",
   "source_version": "20251211",
-  "hash": "d8b2c0a05650",
-  "count": 1669,
-  "tc_coverage": 0.9994008388256441,
+  "hash": "1bc9b574733d",
+  "count": 1670,
+  "tc_coverage": 0.9994011976047904,
   "type_counts": {
-    "station": 299,
+    "station": 300,
     "partner": 608,
     "locker": 762,
-    "cold_chain": 114
+    "cold_chain": 115
   },
   "districts": {
     "Central and Western District": 49,
@@ -29,11 +29,11 @@
     "Tuen Mun District": 140,
     "Wan Chai District": 29,
     "Wong Tai Sin District": 89,
-    "Yau Tsim Mong District": 101,
+    "Yau Tsim Mong District": 102,
     "Yuen Long District": 155
   },
   "changes": {
-    "added": 1669,
+    "added": 1670,
     "removed": 0,
     "changed": 0
   },
