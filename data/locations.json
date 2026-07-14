@@ -23000,6 +23000,26 @@
     "cold_chain": false
   },
   {
+    "code": "H852GH22P",
+    "id": "H852GH22P",
+    "name_en": "SF Locker G/F, Yat Tung Shopping Centre, Tung Chung ",
+    "name_tc": "自助櫃 東涌逸東商場地下",
+    "address_en": "G/F, Yat Tung Shopping Centre, Tung Chung*",
+    "address_tc": "東涌逸東商場地下(近街市熟食檔)*",
+    "telephone": null,
+    "hours_en": "00:00-23:59",
+    "hours_tc": "00:00-23:59",
+    "lat": 22.281542,
+    "lng": 113.93499,
+    "district": "Lantau District",
+    "district_tc": "大嶼山區",
+    "sub_district": "Tung Chung",
+    "sub_district_tc": "東涌",
+    "bizTypeCode": "3,5,6,7",
+    "type": "locker",
+    "cold_chain": false
+  },
+  {
     "code": "H852H003P",
     "id": "H852H003P",
     "name_en": "SF Locker Choi Ha Estate, Ngau Tau Kok",
