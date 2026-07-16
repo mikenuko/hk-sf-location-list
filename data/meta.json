@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-15T21:14:29.401Z",
+  "generated_at": "2026-07-16T21:15:09.296Z",
   "source_version": "20251211",
-  "hash": "70c85ade2186",
-  "count": 1669,
-  "tc_coverage": 0.9994008388256441,
+  "hash": "393a7c48e56a",
+  "count": 1668,
+  "tc_coverage": 0.999400479616307,
   "type_counts": {
     "station": 298,
     "partner": 609,
-    "locker": 762,
+    "locker": 761,
     "cold_chain": 114
   },
   "districts": {
@@ -18,7 +18,7 @@
     "Kwai Tsing District": 98,
     "Kwun Tong District": 128,
     "Lamma Island District": 6,
-    "Lantau District": 34,
+    "Lantau District": 33,
     "North District": 61,
     "Sai Kung District": 87,
     "Sha Tin District": 178,
@@ -33,7 +33,7 @@
     "Yuen Long District": 155
   },
   "changes": {
-    "added": 1669,
+    "added": 1668,
     "removed": 0,
     "changed": 0
   },

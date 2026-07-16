@@ -21400,26 +21400,6 @@
     "cold_chain": false
   },
   {
-    "code": "H852G068P",
-    "id": "H852G068P",
-    "name_en": "SF Locker 2/F, Yat Tung Shopping Centre, Tung Chung",
-    "name_tc": "自助櫃 東涌逸東商場2樓(順豐站)",
-    "address_en": "Shop 201, 2/F, Yat Tung Shopping Centre, Tung Chung*",
-    "address_tc": "香港東涌逸東商場2樓201號鋪(順豐站旁)*",
-    "telephone": null,
-    "hours_en": "06:00-23:00",
-    "hours_tc": "06:00-23:00 周六:06:00-23:00 周日:06:00-23:00 節假日:06:00-23:00",
-    "lat": 22.281936,
-    "lng": 113.934885,
-    "district": "Lantau District",
-    "district_tc": "大嶼山區",
-    "sub_district": "Tung Chung",
-    "sub_district_tc": "東涌",
-    "bizTypeCode": "3,6,7",
-    "type": "locker",
-    "cold_chain": false
-  },
-  {
     "code": "H852G069P",
     "id": "H852G069P",
     "name_en": "SF Locker Kwai Yin Court, Tai Wo Hau",
