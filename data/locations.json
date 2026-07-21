@@ -4160,26 +4160,6 @@
     "cold_chain": false
   },
   {
-    "code": "852FE3012",
-    "id": "852FE3012",
-    "name_en": "錦英苑自提點",
-    "name_tc": "合作店 錦英苑自提點",
-    "address_en": "Shop 3A ,Kam Ying Court Market,Ma On Shan*",
-    "address_tc": "馬鞍山錦英苑街市3A（錦英苑自提點）*",
-    "telephone": null,
-    "hours_en": "12:00-20:00",
-    "hours_tc": "12:00-20:00 周六:12:00-20:00 周日:12：00-18:00 節假日:12:00-18:00",
-    "lat": 22.422989,
-    "lng": 114.236216,
-    "district": "Sha Tin District",
-    "district_tc": "沙田區",
-    "sub_district": "Ma On Shan",
-    "sub_district_tc": "馬鞍山",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
-    "cold_chain": false
-  },
-  {
     "code": "852FE3017",
     "id": "852FE3017",
     "name_en": "西徑士多",

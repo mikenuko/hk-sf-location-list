@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-20T21:23:22.677Z",
+  "generated_at": "2026-07-21T21:33:21.813Z",
   "source_version": "20251211",
-  "hash": "5690738cbf22",
-  "count": 1668,
-  "tc_coverage": 0.999400479616307,
+  "hash": "d634952f3bcf",
+  "count": 1667,
+  "tc_coverage": 0.9994001199760048,
   "type_counts": {
     "station": 297,
-    "partner": 609,
+    "partner": 608,
     "locker": 762,
     "cold_chain": 113
   },
@@ -21,7 +21,7 @@
     "Lantau District": 32,
     "North District": 61,
     "Sai Kung District": 87,
-    "Sha Tin District": 178,
+    "Sha Tin District": 177,
     "Sham Shui Po District": 88,
     "Southern District": 45,
     "Tai Po District": 89,
@@ -33,7 +33,7 @@
     "Yuen Long District": 155
   },
   "changes": {
-    "added": 1668,
+    "added": 1667,
     "removed": 0,
     "changed": 0
   },
