@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-21T21:33:21.813Z",
+  "generated_at": "2026-07-22T21:21:49.916Z",
   "source_version": "20251211",
-  "hash": "d634952f3bcf",
-  "count": 1667,
-  "tc_coverage": 0.9994001199760048,
+  "hash": "3c8b72b825a9",
+  "count": 1668,
+  "tc_coverage": 0.999400479616307,
   "type_counts": {
-    "station": 297,
+    "station": 298,
     "partner": 608,
     "locker": 762,
     "cold_chain": 113
@@ -26,14 +26,14 @@
     "Southern District": 45,
     "Tai Po District": 89,
     "Tsuen Wan District": 81,
-    "Tuen Mun District": 140,
+    "Tuen Mun District": 141,
     "Wan Chai District": 29,
     "Wong Tai Sin District": 89,
     "Yau Tsim Mong District": 100,
     "Yuen Long District": 155
   },
   "changes": {
-    "added": 1667,
+    "added": 1668,
     "removed": 0,
     "changed": 0
   },

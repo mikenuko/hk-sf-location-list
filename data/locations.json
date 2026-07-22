@@ -30760,6 +30760,26 @@
     "cold_chain": false
   },
   {
+    "code": "H852U156P",
+    "id": "H852U156P",
+    "name_en": "Locker No.2, Common Area at Wing C, G/F, King Lok House, Shan King Estate, Tuen Mun",
+    "name_tc": "自助櫃 屯門山景邨景樂樓地下C翼空地(二號櫃)",
+    "address_en": "Locker No.2, Common Area at Wing C, G/F, King Lok House, Shan King Estate, Tuen Mun",
+    "address_tc": "屯門山景邨景樂樓地下C翼空地二號櫃*",
+    "telephone": null,
+    "hours_en": "00:00-23:59",
+    "hours_tc": "00:00-23:59 周六:00:00-23:59 周日:00:00-23:59 節假日:00:00-23:59",
+    "lat": 22.398045,
+    "lng": 113.96632,
+    "district": "Tuen Mun District",
+    "district_tc": "屯門區",
+    "sub_district": "Tuen Mun",
+    "sub_district_tc": "屯門",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
+    "cold_chain": false
+  },
+  {
     "code": "H852UA02P",
     "id": "H852UA02P",
     "name_en": "SF Locker T Town South, Tin Shui Wai",
