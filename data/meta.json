@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-22T21:21:49.916Z",
+  "generated_at": "2026-07-23T21:20:20.024Z",
   "source_version": "20251211",
-  "hash": "3c8b72b825a9",
+  "hash": "d6656bf6ab78",
   "count": 1668,
   "tc_coverage": 0.999400479616307,
   "type_counts": {
-    "station": 298,
-    "partner": 608,
+    "station": 335,
+    "partner": 571,
     "locker": 762,
     "cold_chain": 113
   },

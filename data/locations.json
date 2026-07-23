@@ -12315,8 +12315,8 @@
     "district_tc": "北區",
     "sub_district": "Sheung Shui",
     "sub_district_tc": "上水",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -12335,8 +12335,8 @@
     "district_tc": "北區",
     "sub_district": "Sheung Shui",
     "sub_district_tc": "上水",
-    "bizTypeCode": "3,7,6",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -12355,8 +12355,8 @@
     "district_tc": "北區",
     "sub_district": "Sheung Shui",
     "sub_district_tc": "上水",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -12375,8 +12375,8 @@
     "district_tc": "北區",
     "sub_district": "North District",
     "sub_district_tc": "北區",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -12415,8 +12415,8 @@
     "district_tc": "北區",
     "sub_district": "Sha Tau Kok",
     "sub_district_tc": "沙頭角",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -13775,8 +13775,8 @@
     "district_tc": "大埔區",
     "sub_district": "Tai Po",
     "sub_district_tc": "大埔",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -13815,8 +13815,8 @@
     "district_tc": "大埔區",
     "sub_district": "Tai Po",
     "sub_district_tc": "大埔",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -13835,8 +13835,8 @@
     "district_tc": "大埔區",
     "sub_district": "Tai Po",
     "sub_district_tc": "大埔",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -15455,8 +15455,8 @@
     "district_tc": "觀塘區",
     "sub_district": "Ngau Tau Kok",
     "sub_district_tc": "牛頭角",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -15635,8 +15635,8 @@
     "district_tc": "觀塘區",
     "sub_district": "Kwun Tong",
     "sub_district_tc": "觀塘",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -16275,8 +16275,8 @@
     "district_tc": "觀塘區",
     "sub_district": "Sau Mau Ping",
     "sub_district_tc": "秀茂坪",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -16295,8 +16295,8 @@
     "district_tc": "觀塘區",
     "sub_district": "Sau Mau Ping",
     "sub_district_tc": "秀茂坪",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -16315,8 +16315,8 @@
     "district_tc": "觀塘區",
     "sub_district": "Shun Lee",
     "sub_district_tc": "順利",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -16335,8 +16335,8 @@
     "district_tc": "西貢區",
     "sub_district": "Sai Kung",
     "sub_district_tc": "西貢",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -17335,8 +17335,8 @@
     "district_tc": "深水埗區",
     "sub_district": "Lai Chi Kok",
     "sub_district_tc": "荔枝角",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -17665,7 +17665,7 @@
     "name_en": "Kom Tsun Street, Cheung Sha Wan",
     "name_tc": "自助櫃 長沙灣甘泉街",
     "address_en": "Bus Terminus, Kom Tsun Street, Cheung Sha Wan*",
-    "address_tc": "甘泉街巴士總站(近荔枝角懲教所)*",
+    "address_tc": "長沙灣甘泉街巴士總站(近荔枝角懲教所)*",
     "telephone": null,
     "hours_en": "00:00-23:59",
     "hours_tc": "00:00-23:59 周六:00:00-23:59 周日:00:00-23:59 節假日:00:00-23:59",
@@ -17675,8 +17675,8 @@
     "district_tc": "深水埗區",
     "sub_district": "Lai Chi Kok",
     "sub_district_tc": "荔枝角",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -17935,8 +17935,8 @@
     "district_tc": "油尖旺區",
     "sub_district": "Tsim Sha Tsui",
     "sub_district_tc": "尖沙咀",
-    "bizTypeCode": "3,7,6",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -17955,8 +17955,8 @@
     "district_tc": "油尖旺區",
     "sub_district": "Jordan",
     "sub_district_tc": "佐敦",
-    "bizTypeCode": "3,7,6",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -18015,8 +18015,8 @@
     "district_tc": "油尖旺區",
     "sub_district": "Tsim Sha Tsui",
     "sub_district_tc": "尖沙咀",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -18315,8 +18315,8 @@
     "district_tc": "沙田區",
     "sub_district": "Fo Tan",
     "sub_district_tc": "火炭",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -19915,8 +19915,8 @@
     "district_tc": "沙田區",
     "sub_district": "Ma On Shan",
     "sub_district_tc": "馬鞍山",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -19935,8 +19935,8 @@
     "district_tc": "沙田區",
     "sub_district": "Kau To Shan",
     "sub_district_tc": "九肚山",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -19975,8 +19975,8 @@
     "district_tc": "沙田區",
     "sub_district": "Ma On Shan",
     "sub_district_tc": "馬鞍山",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -20755,8 +20755,8 @@
     "district_tc": "沙田區",
     "sub_district": "Sha Tin",
     "sub_district_tc": "沙田",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -20775,8 +20775,8 @@
     "district_tc": "沙田區",
     "sub_district": "Sha Tin",
     "sub_district_tc": "沙田",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -21835,8 +21835,8 @@
     "district_tc": "荃灣區",
     "sub_district": "Tsuen Wan",
     "sub_district_tc": "荃灣",
-    "bizTypeCode": "3,7,6",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -22735,8 +22735,8 @@
     "district_tc": "葵青區",
     "sub_district": "Tsing Yi",
     "sub_district_tc": "青衣",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -22755,8 +22755,8 @@
     "district_tc": "葵青區",
     "sub_district": "Tsing Yi",
     "sub_district_tc": "青衣",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -23315,8 +23315,8 @@
     "district_tc": "觀塘區",
     "sub_district": "Ngau Tau Kok",
     "sub_district_tc": "牛頭角",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -25275,8 +25275,8 @@
     "district_tc": "九龍城區",
     "sub_district": "Hung Hom",
     "sub_district_tc": "紅磡",
-    "bizTypeCode": "3,7,6",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -25295,8 +25295,8 @@
     "district_tc": "九龍城區",
     "sub_district": "Hung Hom",
     "sub_district_tc": "紅磡",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -26775,8 +26775,8 @@
     "district_tc": "油尖旺區",
     "sub_district": "Tai Kok Tsui",
     "sub_district_tc": "大角咀",
-    "bizTypeCode": "3,7,6",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -26835,8 +26835,8 @@
     "district_tc": "深水埗區",
     "sub_district": "Lai Chi Kok",
     "sub_district_tc": "美孚",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -26855,8 +26855,8 @@
     "district_tc": "深水埗區",
     "sub_district": "Lai Chi Kok",
     "sub_district_tc": "美孚",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -31495,8 +31495,8 @@
     "district_tc": "元朗區",
     "sub_district": "Yuen Long",
     "sub_district_tc": "元朗",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -31515,8 +31515,8 @@
     "district_tc": "元朗區",
     "sub_district": "Yuen Long",
     "sub_district_tc": "元朗",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
@@ -32355,7 +32355,7 @@
     "district_tc": "元朗區",
     "sub_district": "Tin Shui Wai",
     "sub_district_tc": "天水圍",
-    "bizTypeCode": "3,7,6,5",
+    "bizTypeCode": "3,5,6,7",
     "type": "locker",
     "cold_chain": false
   },
@@ -32535,8 +32535,8 @@
     "district_tc": "元朗區",
     "sub_district": "Hung Shui Kiu",
     "sub_district_tc": "洪水橋",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
+    "bizTypeCode": "3,5,6,7",
+    "type": "station",
     "cold_chain": false
   },
   {
