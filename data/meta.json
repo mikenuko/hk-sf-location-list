@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-26T21:11:20.252Z",
+  "generated_at": "2026-07-27T21:22:41.064Z",
   "source_version": "20251211",
-  "hash": "868a278f9fa6",
+  "hash": "dc21082f212b",
   "count": 1668,
   "tc_coverage": 0.999400479616307,
   "type_counts": {
     "station": 335,
-    "partner": 571,
-    "locker": 762,
+    "partner": 573,
+    "locker": 760,
     "cold_chain": 113
   },
   "districts": {
@@ -28,8 +28,8 @@
     "Tsuen Wan District": 81,
     "Tuen Mun District": 141,
     "Wan Chai District": 29,
-    "Wong Tai Sin District": 89,
-    "Yau Tsim Mong District": 100,
+    "Wong Tai Sin District": 90,
+    "Yau Tsim Mong District": 99,
     "Yuen Long District": 156
   },
   "changes": {
