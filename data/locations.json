@@ -13160,26 +13160,6 @@
     "cold_chain": false
   },
   {
-    "code": "H852AA06P",
-    "id": "H852AA06P",
-    "name_en": "SF Locker Wai Tau Tsuen, Tai Po(Pet Haven)",
-    "name_tc": "自助櫃 大埔圍頭村(寵物國度)",
-    "address_en": "G/F, 163 Wai Tau Tsuen, Tai Po *",
-    "address_tc": "香港大埔圍頭村寵物國度康樂園對面圍頭村牌坊*",
-    "telephone": null,
-    "hours_en": "10:00-20:00",
-    "hours_tc": "10:00-20:00",
-    "lat": 22.464605,
-    "lng": 114.145882,
-    "district": "Tai Po District",
-    "district_tc": "大埔區",
-    "sub_district": "Tai Po",
-    "sub_district_tc": "大埔",
-    "bizTypeCode": "3,5,6,7",
-    "type": "locker",
-    "cold_chain": false
-  },
-  {
     "code": "H852AA07P",
     "id": "H852AA07P",
     "name_en": "Locker No.2, Logistic Room, G/F, Near University Hill Phase 2B Scenic Tower 2, Silicon Hill, Tai Po",
