@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-30T21:21:51.714Z",
+  "generated_at": "2026-07-31T21:20:12.716Z",
   "source_version": "20251211",
-  "hash": "32fd5d080c5c",
-  "count": 1665,
+  "hash": "a93bc5d8844c",
+  "count": 1664,
   "tc_coverage": 1,
   "type_counts": {
     "station": 335,
-    "partner": 573,
+    "partner": 572,
     "locker": 757,
     "cold_chain": 113
   },
@@ -22,7 +22,7 @@
     "North District": 61,
     "Sai Kung District": 87,
     "Sha Tin District": 176,
-    "Sham Shui Po District": 88,
+    "Sham Shui Po District": 87,
     "Southern District": 45,
     "Tai Po District": 88,
     "Tsuen Wan District": 81,
@@ -33,7 +33,7 @@
     "Yuen Long District": 156
   },
   "changes": {
-    "added": 1665,
+    "added": 1664,
     "removed": 0,
     "changed": 0
   },

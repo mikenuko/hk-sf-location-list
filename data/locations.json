@@ -1200,26 +1200,6 @@
     "cold_chain": false
   },
   {
-    "code": "852BA3014",
-    "id": "852BA3014",
-    "name_en": "德記士多",
-    "name_tc": "合作店 德記士多",
-    "address_en": "G/F,21 Pei Ho Street, Shamshuipo, Kln*",
-    "address_tc": "深水埗北河街21號地鋪德記士多*",
-    "telephone": null,
-    "hours_en": "13:00-23:00",
-    "hours_tc": "13:00-23:00 周六:13:00-23:00",
-    "lat": 22.3277979,
-    "lng": 114.1600909,
-    "district": "Sham Shui Po District",
-    "district_tc": "深水埗區",
-    "sub_district": "Sham Shui Po",
-    "sub_district_tc": "深水埗",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
-    "cold_chain": false
-  },
-  {
     "code": "852BA3015",
     "id": "852BA3015",
     "name_en": "潮豐藥妝",
