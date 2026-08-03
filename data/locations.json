@@ -12500,26 +12500,6 @@
     "cold_chain": false
   },
   {
-    "code": "H852A018P",
-    "id": "H852A018P",
-    "name_en": "Podium, Block 6,7,8,9, Woodland Crest",
-    "name_tc": "自助櫃 上水奕翠園六,七,八,九座平台",
-    "address_en": "Footbrige Exit, Podium, Block 6,7,8,9, Woodland Crest, Sheung Shui(Residents only)*",
-    "address_tc": "香港上水奕翠園六至九座平台天橋出口住戶使用*",
-    "telephone": null,
-    "hours_en": "00:00-23:59",
-    "hours_tc": "00:00-23:59 周六:00:00-23:59 周日:00:00-23:59 節假日:00:00-23:59",
-    "lat": 22.506209,
-    "lng": 114.132377,
-    "district": "North District",
-    "district_tc": "北區",
-    "sub_district": "Sheung Shui",
-    "sub_district_tc": "上水",
-    "bizTypeCode": "5,3,6,7",
-    "type": "station",
-    "cold_chain": false
-  },
-  {
     "code": "H852A019P",
     "id": "H852A019P",
     "name_en": "Loading Area, G/F, Block 7, Dawning Views, 23 Yat Ming Road, Fanling, New Territories(Residentsonly)*+",
