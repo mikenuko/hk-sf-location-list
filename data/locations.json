@@ -28440,6 +28440,26 @@
     "cold_chain": false
   },
   {
+    "code": "H852RE08P",
+    "id": "H852RE08P",
+    "name_en": "Recycle Locker Fortune Mansion, Ap Lei Chau",
+    "name_tc": "回收櫃 鴨脷洲利是大廈(順豐站)",
+    "address_en": "Shop A, G/F, Fortune Mansion, Ap Lei Chau",
+    "address_tc": "鴨脷洲利是大廈地下A鋪(回收櫃)",
+    "telephone": null,
+    "hours_en": "12:00-21:00",
+    "hours_tc": "12:00-21:00 周六:12:00-20:00 周日:12:00-20:00 節假日:12:00-20:00",
+    "lat": 22.243972,
+    "lng": 114.156008,
+    "district": "Southern District",
+    "district_tc": "南區",
+    "sub_district": "Ap Lei Chau",
+    "sub_district_tc": "鴨脷洲",
+    "bizTypeCode": null,
+    "type": "partner",
+    "cold_chain": false
+  },
+  {
     "code": "H852T048P",
     "id": "H852T048P",
     "name_en": "SF Locker Silverstone Mansion, Happy Valley",
