@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-08-16T20:36:13.551Z",
+  "generated_at": "2026-08-17T20:42:14.872Z",
   "source_version": "20251211",
-  "hash": "83f6eb1b6f85",
-  "count": 1663,
+  "hash": "efdc4cc69c1d",
+  "count": 1664,
   "tc_coverage": 1,
   "type_counts": {
-    "station": 334,
+    "station": 335,
     "partner": 571,
     "locker": 758,
     "cold_chain": 113
   },
   "districts": {
-    "Central and Western District": 50,
+    "Central and Western District": 51,
     "Cheung Chau District": 3,
     "Eastern District": 105,
     "Kowloon City District": 102,
@@ -33,7 +33,7 @@
     "Yuen Long District": 155
   },
   "changes": {
-    "added": 1663,
+    "added": 1664,
     "removed": 0,
     "changed": 0
   },
