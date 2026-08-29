@@ -11900,6 +11900,26 @@
     "cold_chain": true
   },
   {
+    "code": "852Z358",
+    "id": "852Z358",
+    "name_en": "Tung Chung Yat Tung CTR SF Store",
+    "name_tc": "東涌逸東商場順豐站",
+    "address_en": "Shop No. 216, 2/F., Commercial Centre 1, Yat Tung Shopping Centre, Yat Tung Estate, 8 Yat Tung Street*^,Tung Chung,Lantau District,Hong Kong",
+    "address_tc": "香港大嶼山區東涌逸東街8號逸東邨逸東商場2樓216號鋪*^",
+    "telephone": "61125020",
+    "hours_en": "Monday to Friday: 11:00-22:00; Sat、Sun & Holidays: 12:00-20:00",
+    "hours_tc": "周一至周五,11:00-22:00;周日及公眾假期,12:00-20:00; 周六: 12:00-20:00",
+    "lat": 22.278447,
+    "lng": 113.939371,
+    "district": "Lantau District",
+    "district_tc": "大嶼山區",
+    "sub_district": "Tung Chung",
+    "sub_district_tc": "東涌",
+    "bizTypeCode": "5,6,7,1",
+    "type": "station",
+    "cold_chain": true
+  },
+  {
     "code": "852Z401",
     "id": "852Z401",
     "name_en": "Richland Gardens, Kowloon Bay",
@@ -20177,26 +20197,6 @@
     "sub_district_tc": "馬鞍山",
     "bizTypeCode": "3,5,6,7",
     "type": "station",
-    "cold_chain": false
-  },
-  {
-    "code": "H852FEA4P",
-    "id": "H852FEA4P",
-    "name_en": "Sai Keng Tsuen, Sai Kung",
-    "name_tc": "自助櫃 西貢西徑村",
-    "address_en": "G/F, 32 Sai Keng Tsuen, Sai Kung*",
-    "address_tc": "西貢西徑村32F地下 (西徑士多)*",
-    "telephone": null,
-    "hours_en": "00:00-23:59",
-    "hours_tc": "00:00-23:59 周六:00:00-23:59 周日:00:00-23:59 節假日:00:00-23:59",
-    "lat": 22.419065,
-    "lng": 114.266778,
-    "district": "Sai Kung District",
-    "district_tc": "西貢區",
-    "sub_district": "Sai Kung",
-    "sub_district_tc": "西貢",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
     "cold_chain": false
   },
   {
