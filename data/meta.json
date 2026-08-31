@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-30T22:43:57.939Z",
+  "generated_at": "2026-08-31T23:49:57.393Z",
   "source_version": "20251211",
-  "hash": "b3dd22686a6a",
-  "count": 1695,
+  "hash": "3d7049c4d76e",
+  "count": 1691,
   "tc_coverage": 1,
   "type_counts": {
-    "station": 336,
-    "partner": 566,
+    "station": 335,
+    "partner": 563,
     "locker": 793,
     "cold_chain": 114
   },
@@ -20,11 +20,11 @@
     "Lamma Island District": 6,
     "Lantau District": 34,
     "North District": 64,
-    "Sai Kung District": 87,
-    "Sha Tin District": 182,
-    "Sham Shui Po District": 90,
+    "Sai Kung District": 86,
+    "Sha Tin District": 181,
+    "Sham Shui Po District": 89,
     "Southern District": 45,
-    "Tai Po District": 87,
+    "Tai Po District": 86,
     "Tsuen Wan District": 83,
     "Tuen Mun District": 145,
     "Wan Chai District": 29,
@@ -33,7 +33,7 @@
     "Yuen Long District": 156
   },
   "changes": {
-    "added": 1695,
+    "added": 1691,
     "removed": 0,
     "changed": 0
   },
