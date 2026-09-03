@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-02T22:38:50.512Z",
+  "generated_at": "2026-09-03T22:40:30.426Z",
   "source_version": "20251211",
-  "hash": "c602cf2c417c",
-  "count": 1659,
+  "hash": "42dd25aa6cbe",
+  "count": 1656,
   "tc_coverage": 1,
   "type_counts": {
     "station": 335,
     "partner": 560,
-    "locker": 764,
+    "locker": 761,
     "cold_chain": 114
   },
   "districts": {
-    "Central and Western District": 53,
+    "Central and Western District": 52,
     "Cheung Chau District": 3,
     "Eastern District": 105,
     "Kowloon City District": 102,
@@ -20,20 +20,20 @@
     "Lamma Island District": 6,
     "Lantau District": 34,
     "North District": 61,
-    "Sai Kung District": 86,
+    "Sai Kung District": 85,
     "Sha Tin District": 176,
     "Sham Shui Po District": 86,
     "Southern District": 45,
     "Tai Po District": 86,
     "Tsuen Wan District": 81,
-    "Tuen Mun District": 141,
+    "Tuen Mun District": 140,
     "Wan Chai District": 29,
     "Wong Tai Sin District": 89,
     "Yau Tsim Mong District": 97,
     "Yuen Long District": 153
   },
   "changes": {
-    "added": 1659,
+    "added": 1656,
     "removed": 0,
     "changed": 0
   },
