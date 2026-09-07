@@ -11080,26 +11080,6 @@
     "cold_chain": true
   },
   {
-    "code": "852UAB",
-    "id": "852UAB",
-    "name_en": "Hung Wai Industrial Building, Yuen Long",
-    "name_tc": "元朗雄偉工業大廈順豐站",
-    "address_en": "Unit no. F, G/F, Hung Wai Industrial Building,Nos.1-5 Hi Yip Street West*^,Yuen Long,Yuen Long District,Hong Kong",
-    "address_tc": "香港元朗區元朗喜業街1-5號雄偉工業大廈地下F室*",
-    "telephone": "63096879",
-    "hours_en": "Mon to Sat 09:00-20:00; Sun & Statutory Holidays 09:00-18:00",
-    "hours_tc": "周一至周六,09:00-20:00;周日及勞工假期,09:00-18:00",
-    "lat": 22.449805,
-    "lng": 114.028084,
-    "district": "Yuen Long District",
-    "district_tc": "元朗區",
-    "sub_district": "Yuen Long",
-    "sub_district_tc": "元朗",
-    "bizTypeCode": "1,3,5,6,7",
-    "type": "station",
-    "cold_chain": true
-  },
-  {
     "code": "852UAL",
     "id": "852UAL",
     "name_en": "Melody Garden, Tuen Mun",
