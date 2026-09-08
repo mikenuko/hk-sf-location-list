@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-07T22:49:07.818Z",
+  "generated_at": "2026-09-08T22:38:42.229Z",
   "source_version": "20251211",
-  "hash": "f51c0bbd2ff4",
-  "count": 1656,
+  "hash": "e5712db20882",
+  "count": 1657,
   "tc_coverage": 1,
   "type_counts": {
     "station": 334,
     "partner": 560,
-    "locker": 762,
+    "locker": 763,
     "cold_chain": 113
   },
   "districts": {
@@ -30,10 +30,10 @@
     "Wan Chai District": 28,
     "Wong Tai Sin District": 89,
     "Yau Tsim Mong District": 97,
-    "Yuen Long District": 152
+    "Yuen Long District": 153
   },
   "changes": {
-    "added": 1656,
+    "added": 1657,
     "removed": 0,
     "changed": 0
   },
