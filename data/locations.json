@@ -1160,26 +1160,6 @@
     "cold_chain": false
   },
   {
-    "code": "852BA3015",
-    "id": "852BA3015",
-    "name_en": "潮豐藥妝",
-    "name_tc": "合作店 潮豐葯妝",
-    "address_en": "Shop C2, Ground Floor, Tai Lei Building, 165-167 North River Street, Sham Shui Po, Hong Kong*",
-    "address_tc": "香港深水埗北河街165-167號太利樓地下C2號鋪 潮豐葯妝*",
-    "telephone": null,
-    "hours_en": "14:00-23:00",
-    "hours_tc": "14:00-23:00 周六:14:00-23:00 周日:14:00-23:00",
-    "lat": 22.331797,
-    "lng": 114.16354826,
-    "district": "Yau Tsim Mong District",
-    "district_tc": "油尖旺區",
-    "sub_district": "Prince Edward",
-    "sub_district_tc": "太子",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
-    "cold_chain": false
-  },
-  {
     "code": "852BA3016",
     "id": "852BA3016",
     "name_en": "淘寶集運自提點",
@@ -23497,6 +23477,26 @@
     "sub_district_tc": "啟德",
     "bizTypeCode": "3,5,6,7",
     "type": "station",
+    "cold_chain": false
+  },
+  {
+    "code": "H852HD19P",
+    "id": "H852HD19P",
+    "name_en": "SF Locker Double Coast, Kai Tak",
+    "name_tc": "自助櫃 啟德Double Coast",
+    "address_en": "Next to Parking space 117, B/F, Double Coast, Kai Tak(Residents only)*",
+    "address_tc": "啟德Double Coast地庫停車場117車位旁(只供住戶使用)*",
+    "telephone": null,
+    "hours_en": "00:00-23:59",
+    "hours_tc": "00:00-23:59 周六:00:00-23:59 周日:00:00-23:59 節假日:00:00-23:59",
+    "lat": 22.3142,
+    "lng": 114.20593,
+    "district": "Kowloon City District",
+    "district_tc": "九龍城區",
+    "sub_district": "Kai Tak",
+    "sub_district_tc": "啟德",
+    "bizTypeCode": "3,5,6,7",
+    "type": "locker",
     "cold_chain": false
   },
   {
