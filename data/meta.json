@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-09T22:32:57.550Z",
+  "generated_at": "2026-09-10T22:34:02.887Z",
   "source_version": "20251211",
-  "hash": "1e28f49bbaf4",
+  "hash": "3a28ce2091b3",
   "count": 1657,
   "tc_coverage": 1,
   "type_counts": {
@@ -29,8 +29,8 @@
     "Tuen Mun District": 140,
     "Wan Chai District": 28,
     "Wong Tai Sin District": 89,
-    "Yau Tsim Mong District": 96,
-    "Yuen Long District": 153
+    "Yau Tsim Mong District": 95,
+    "Yuen Long District": 154
   },
   "changes": {
     "added": 1657,
