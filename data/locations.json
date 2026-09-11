@@ -19700,6 +19700,26 @@
     "cold_chain": false
   },
   {
+    "code": "H852FEA4P",
+    "id": "H852FEA4P",
+    "name_en": "Sai Keng Tsuen, Sai Kung",
+    "name_tc": "自助櫃 西貢西徑村",
+    "address_en": "G/F, 32 Sai Keng Tsuen, Sai Kung*",
+    "address_tc": "西貢西徑村32F地下 (西徑士多)*",
+    "telephone": null,
+    "hours_en": "00:00-23:59",
+    "hours_tc": "00:00-23:59 周六:00:00-23:59 周日:00:00-23:59 節假日:00:00-23:59",
+    "lat": 22.419065,
+    "lng": 114.266778,
+    "district": "Sai Kung District",
+    "district_tc": "西貢區",
+    "sub_district": "Sai Kung",
+    "sub_district_tc": "西貢",
+    "bizTypeCode": "3,6,7",
+    "type": "partner",
+    "cold_chain": false
+  },
+  {
     "code": "H852FEA5P",
     "id": "H852FEA5P",
     "name_en": "Locker No.1, Shop 15, G/F, Double Cove Place, Ma On Shan ",
@@ -28595,7 +28615,7 @@
     "district_tc": "南區",
     "sub_district": "Ap Lei Chau",
     "sub_district_tc": "鴨脷洲",
-    "bizTypeCode": "5,3,7,6",
+    "bizTypeCode": "3,5,6,7",
     "type": "locker",
     "cold_chain": false
   },
