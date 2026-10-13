@@ -8480,26 +8480,6 @@
     "cold_chain": false
   },
   {
-    "code": "852PA3012",
-    "id": "852PA3012",
-    "name_en": "海光自提點",
-    "name_tc": "合作店 海光自提點",
-    "address_en": "Shop 2A3,Hoi Kwong Court Shopping Arcade，Quarry Bay*",
-    "address_tc": "香港鰂魚涌海光商場2A3號鋪 (海光自提點)*",
-    "telephone": null,
-    "hours_en": "12:00-19:30",
-    "hours_tc": "12:00-19:30 周六:12:00-19:30 周日:12:00-16:00",
-    "lat": 22.287643,
-    "lng": 114.210886,
-    "district": "Eastern District",
-    "district_tc": "東區",
-    "sub_district": "Quarry Bay",
-    "sub_district_tc": "鰂魚涌",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
-    "cold_chain": false
-  },
-  {
     "code": "852PAL",
     "id": "852PAL",
     "name_en": "Smiling Shaukeiwan Plaza, Shau Kei Wan",
