@@ -5180,26 +5180,6 @@
     "cold_chain": false
   },
   {
-    "code": "852GH3011",
-    "id": "852GH3011",
-    "name_en": "梅窩集運店",
-    "name_tc": "合作店 梅窩集運店",
-    "address_en": "14 Mui Wo Rural Committee Road, New Territories*",
-    "address_tc": "新界梅窩鄉事會路14號(梅窩集運店)*",
-    "telephone": null,
-    "hours_en": "11:45-19:45",
-    "hours_tc": "11:45-19:45 周六:11:45-17:45",
-    "lat": 22.26799066,
-    "lng": 113.9972807,
-    "district": "Lantau District",
-    "district_tc": "大嶼山區",
-    "sub_district": "Lantau Island",
-    "sub_district_tc": "大嶼山",
-    "bizTypeCode": "3,6,7",
-    "type": "partner",
-    "cold_chain": false
-  },
-  {
     "code": "852GH3013",
     "id": "852GH3013",
     "name_en": "極拼自提點",
@@ -21638,26 +21618,6 @@
     "bizTypeCode": "3,5,6,7",
     "type": "locker",
     "cold_chain": false
-  },
-  {
-    "code": "H852GC01S",
-    "id": "H852GC01S",
-    "name_en": "Next to Lift, 9/F,Asia Logistics Hub SFCentre,Tsing Yi ",
-    "name_tc": "冷凍櫃 青衣順豐大廈九樓(只供大廈員工使用)",
-    "address_en": "Next to Lift, 9/F,Asia Logistics Hub SFCentre,Tsing Yi (Only for staff)",
-    "address_tc": "青衣順豐大廈九樓電梯旁(只供大廈員工使用)",
-    "telephone": null,
-    "hours_en": "00:00-23:59",
-    "hours_tc": "00:00-23:59 周六:00:00-23:59 周日:00:00-23:59 節假日:00:00-23:59",
-    "lat": 22.33543,
-    "lng": 114.11069,
-    "district": "Kwai Tsing District",
-    "district_tc": "葵青區",
-    "sub_district": "Tsing Yi",
-    "sub_district_tc": "青衣",
-    "bizTypeCode": "1,6,7",
-    "type": "station",
-    "cold_chain": true
   },
   {
     "code": "H852GC02P",
